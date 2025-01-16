@@ -6,7 +6,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-lg">
+    <nav className="bg-slate-50 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -20,10 +20,10 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-4">
             <Button variant="outline" className="px-4 py-2 text-sm text-blue-600 rounded-md">
-            <Brain/> Leaderard
+            <Trophy/> Leaderard
             </Button>
             <Button className="px-4 py-2 text-sm text-blue-600 bgrounded-md" variant="outline">
-           <Trophy/> Players
+            <Brain/> Players
             </Button>
             <Button className="px-4 py-2 text-sm text-white bg-blue-600 rounded-md" variant="outline">
             <Users/>Sign In
@@ -57,16 +57,16 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
-          <button className="block px-4 py-2 text-sm text-blue-600 bg-black rounded-md w-full text-left">
-            🏆 Leaderboard
-          </button>
-          <button className="block px-4 py-2 text-sm text-blue-600 bg-black rounded-md w-full text-left">
-            👥 Players
-          </button>
-          <button className="block px-4 py-2 text-sm text-white bg-blue-600 rounded-md w-full text-left">
-            Sign In
-          </button>
+        <div className="md:hidden px-2 pt-2 pb-3 space-y-1 bg-slate-50 shadow-md">
+          <Button variant="outline"  className="flex justify-start px-4 py-2 text-sm text-blue-600  rounded-md w-[50%] text-left">
+          <Trophy/> Leaderboard
+          </Button>
+          <Button variant="outline"  className="flex justify-start   px-4 py-2 text-sm text-blue-600  rounded-md w-[50%] text-left">
+          <Brain/> Players
+          </Button>
+          <Button className="flex justify-start px-4 py-2 text-sm text-white bg-blue-600 rounded-md w-[50%]  text-left">
+          <Users/>Sign In
+          </Button>
         </div>
       )}
     </nav>
