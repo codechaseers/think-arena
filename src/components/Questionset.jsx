@@ -2,25 +2,40 @@ import React from "react";
 import { useState } from "react";
 import { GameInterface } from "./Gameinterface";
 import { ChallengeSection } from "./Chalangeyourself";
+import axios from "axios";
 
 export default function Questionset() {
   const [selectedTopic, setSelectedTopic] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [questionCount, setQuestionCount] = useState(15);
   const [quizStart, setQuizStart] = useState(false);
+  const [quizData, setQuizData] = useState();
 
-  const gameStart=async ()=>{
- 
-    setQuizStart(true)
- 
-  }
-console.log(difficulty);
-console.log(selectedTopic);
+  const gameStart = async () => {
+    try {
+      let response=await axios.get(`https://opentdb.com/api.php?amount=2&category=${selectedTopic}&difficulty=${difficulty}&type=multiple`)
+      if(response.data.response_code==0   )   {
+        setQuizData(response.data.results)
+        setQuizStart(true);
+      }
+      
+      console.log(response.data)
+    } catch (error) {
+      
+    }
+
+
+    // 
+  };
+  console.log(difficulty);
+  console.log(selectedTopic);
+  console.log(quizData);
 
   return (
     <>
+  
       {quizStart ? (
-        <GameInterface />
+        <GameInterface quizData={quizData} />
       ) : (
         <ChallengeSection
           selectedTopic={selectedTopic}
