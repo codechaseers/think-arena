@@ -13,7 +13,7 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
           <Brain className="w-8 h-8 text-blue-500" />
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-600 text-transparent bg-clip-text m-1">
-            ThinkArena
+            Think Arena
             </span>
           </div>
 

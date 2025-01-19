@@ -7,13 +7,14 @@ import axios from "axios";
 export default function Questionset() {
   const [selectedTopic, setSelectedTopic] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  const [questionCount, setQuestionCount] = useState(15);
+  const [questionCount, setQuestionCount] = useState(5);
   const [quizStart, setQuizStart] = useState(false);
   const [quizData, setQuizData] = useState();
+ 
 
   const gameStart = async () => {
     try {
-      let response=await axios.get(`https://opentdb.com/api.php?amount=2&category=${selectedTopic}&difficulty=${difficulty}&type=multiple`)
+      let response=await axios.get(`https://opentdb.com/api.php?amount=${questionCount}&category=${selectedTopic}&difficulty=${difficulty}&type=multiple`)
       if(response.data.response_code==0   )   {
         setQuizData(response.data.results)
         setQuizStart(true);

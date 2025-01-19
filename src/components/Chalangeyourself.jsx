@@ -117,7 +117,7 @@ const difficulties = [
   { value: "hard", label: "Hard" },
 ];
 
-const questionCounts = [15, 20, 25, 30];
+const questionCounts = [5,10,15, 20, 25, 30];
 
 export function ChallengeSection({
   setQuestionCount,
