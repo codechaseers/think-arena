@@ -96,7 +96,7 @@ export function GameInterface({ quizData }) {
       <div className="grid grid-cols-2 gap-4">
         {options &&
           [...options, answer]
-            .sort(() => Math.random() - 0.5)
+            // .sort(() => Math.random() - 0.5)
             .map((option, index) => (
               <Button
                 key={index}
