@@ -18,8 +18,8 @@ export function GameInterface({ quizData }) {
   );
 
   // console.log(quizData);
-  console.log("pageNo",pageNo);
-  console.log("Number of question",numerOfQuestion);
+  console.log("pageNo", pageNo);
+  console.log("Number of question", numerOfQuestion);
 
   //Option  Set  Method
   useEffect(() => {
@@ -27,9 +27,10 @@ export function GameInterface({ quizData }) {
     setAnswer(quizData && quizData[pageNo - 1].correct_answer);
 
     setOptions(incorectOption, answer);
+    setOptions([...incorectOption, answer]);
     setUserChoice(false);
-    // console.log("Attampt Question ", attemptQuestionSet);
-  }, [pageNo]);
+    console.log("Attampt Question ", attemptQuestionSet);
+  }, [pageNo, answer]);
 
   const nextPage = () => {
     if (pageNo < numerOfQuestion) setPageNo((prev) => prev + 1);
@@ -45,6 +46,7 @@ export function GameInterface({ quizData }) {
     console.log("click option");
     setUserAnswer(userChoise);
     setUserChoice(true);
+
     setAttemptQuestionSet((prevSet) => {
       const newSet = new Set(prevSet); // Create a new Set to maintain immutability
       newSet.add(questionIndex); // Add the question index (example)
@@ -95,14 +97,17 @@ export function GameInterface({ quizData }) {
 
       <div className="grid grid-cols-2 gap-4">
         {options &&
-          [...options, answer]
+          options
             // .sort(() => Math.random() - 0.5)
             .map((option, index) => (
               <Button
                 key={index}
                 disabled={userChoice || attemptQuestionSet.has(pageNo)}
                 variant="outline"
-                onClick={() => checkUseranswer(option, pageNo)}
+                onClick={() => {
+                  checkUseranswer(option, pageNo);
+                  setTimeout(() => setUserChoice(true), 0);
+                }}
                 className={`bg-slate-50 p-6 text-lg border-blue-200 rounded-sm text-blue-900 hover:bg-blue-100 hover:border-blue-400 cursor-pointer shadow-sm ${
                   userChoice && option == userAnswer && userAnswer != answer
                     ? "bg-red-400"
