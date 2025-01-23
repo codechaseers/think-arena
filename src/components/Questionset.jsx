@@ -28,9 +28,10 @@ export default function Questionset() {
 
     // 
   };
-  console.log(difficulty);
-  console.log(selectedTopic);
-  console.log(quizData);
+  // console.log(difficulty);
+  // console.log(selectedTopic);
+  // console.log(quizData);
+  console.log(quizStart);
 
   return (
     <>
