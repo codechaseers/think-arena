@@ -109,10 +109,14 @@ export function GameInterface({ quizData }) {
                   setTimeout(() => setUserChoice(true), 0);
                 }}
                 className={`bg-slate-50 p-6 text-lg border-blue-200 rounded-sm text-blue-900 hover:bg-blue-100 hover:border-blue-400 cursor-pointer shadow-sm ${
-                  userChoice && option == userAnswer && userAnswer != answer
-                    ? "bg-red-400"
-                    : "bg-slate-50"
-                } ${userChoice && option == answer ? "bg-green-600" : ""}`}
+                  userChoice
+                    ? option === answer
+                      ? "bg-green-600"
+                      : option === userAnswer && userAnswer !== answer
+                      ? "bg-red-400"
+                      : ""
+                    : ""
+                }`}
               >
                 {option}
               </Button>
