@@ -12,7 +12,6 @@ export function GameInterface({ quizData }) {
   const [userAnswer, setUserAnswer] = useState();
   const [userChoice, setUserChoice] = useState(false);
   const [attemptQuestionSet, setAttemptQuestionSet] = useState(new Set());
-  
 
   const [numerOfQuestion, setNumerOfQuestion] = useState(
     quizData && quizData.length
@@ -107,11 +106,15 @@ export function GameInterface({ quizData }) {
                 variant="outline"
                 onClick={() => {
                   checkUseranswer(option, pageNo);
-                  setUserChoice(true) ;
+                  setUserChoice(true);
+                }}
+                onTouchEnd={() => {
+                  checkUseranswer(option, pageNo);
+                  setUserChoice(true);
                 }}
                 className={`bg-slate-50 p-6 text-lg border-blue-200 rounded-sm text-blue-900 hover:bg-blue-100 hover:border-blue-400 cursor-pointer shadow-sm ${
                   userChoice
-                    ?  option === userAnswer && userAnswer !== answer
+                    ? option === userAnswer && userAnswer !== answer
                       ? "bg-red-200"
                       : option === answer
                       ? "bg-green-400"
