@@ -27,7 +27,11 @@ export function GameInterface({ quizData }) {
     setAnswer(quizData && quizData[pageNo - 1].correct_answer);
 
     setOptions(incorectOption, answer);
-    setOptions([...incorectOption, answer]);
+    // Combine incorrect options with the correct answer
+    let allOptions = [...incorectOption, answer];
+    allOptions = allOptions.sort(() => Math.random() - 0.5);
+
+    setOptions(allOptions);
     setUserChoice(false);
     console.log("Attampt Question ", attemptQuestionSet);
   }, [pageNo, answer]);
@@ -95,7 +99,7 @@ export function GameInterface({ quizData }) {
         </p>
       </Card>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {options &&
           options
             // .sort(() => Math.random() - 0.5)
@@ -112,7 +116,7 @@ export function GameInterface({ quizData }) {
                   checkUseranswer(option, pageNo);
                   setUserChoice(true);
                 }}
-                className={`bg-slate-50 p-6 text-lg border-blue-200 rounded-sm text-blue-900 hover:bg-blue-100 hover:border-blue-400 cursor-pointer shadow-sm ${
+                className={`bg-slate-50   text-lg border-blue-200 rounded-sm text-blue-900 hover:bg-blue-100 hover:border-blue-400 cursor-pointer shadow-sm  flex flex-wrap items-center justify-center h-auto  text-center text-wrap    ${
                   userChoice
                     ? option === userAnswer && userAnswer !== answer
                       ? "bg-red-200"
@@ -125,6 +129,7 @@ export function GameInterface({ quizData }) {
                 {option}
               </Button>
             ))}
+      
       </div>
       <Button
         disabled={pageNo == 1}
