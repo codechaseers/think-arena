@@ -12,8 +12,7 @@ export function GameInterface({ quizData }) {
   const [userAnswer, setUserAnswer] = useState();
   const [userChoice, setUserChoice] = useState(false);
   const [attemptQuestionSet, setAttemptQuestionSet] = useState(new Set());
-  let [buttonBg,setButtonBg] = useState('bg-green-600')
-  let [buttonBgred,setButtonBgred ]=useState('bg-red-600')
+  
 
   const [numerOfQuestion, setNumerOfQuestion] = useState(
     quizData && quizData.length
@@ -62,11 +61,6 @@ export function GameInterface({ quizData }) {
   }, [attemptQuestionSet]);
   // console.log("correct ", answer);
 
-  useEffect(()=>{
-setButtonBg("bg-green-200")
-setButtonBgred("bg-red-600")
-  },[answer])
-
   return (
     <div className="max-w-4xl mx-auto">
       <div className="flex justify-between items-center mb-8">
@@ -113,14 +107,14 @@ setButtonBgred("bg-red-600")
                 variant="outline"
                 onClick={() => {
                   checkUseranswer(option, pageNo);
-                  setTimeout(() => setUserChoice(true), 0);
+                  setUserChoice(true) ;
                 }}
                 className={`bg-slate-50 p-6 text-lg border-blue-200 rounded-sm text-blue-900 hover:bg-blue-100 hover:border-blue-400 cursor-pointer shadow-sm ${
                   userChoice
-                    ? option === answer
-                      ? buttonBg
-                      : option === userAnswer && userAnswer !== answer
-                      ? buttonBgred
+                    ?  option === userAnswer && userAnswer !== answer
+                      ? "bg-red-200"
+                      : option === answer
+                      ? "bg-green-400"
                       : ""
                     : ""
                 }`}
